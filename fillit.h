@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.h                                 :+:      :+:    :+:   */
+/*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:14:18 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/01 23:35:26 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/12/01 23:13:55 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/12/01 23:19:40 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GESTION_DE_CRISE_H
-# define GESTION_DE_CRISE_H
+#ifndef FILLIT_H
+# define FILLIT_H
 
-# include "libft/libft.h"
-
-void	ft_print_errors(int n);
-int		ft_free_var(unsigned short **tab, char **tetro, char **line);
-int		ft_check_errors(char **line);
+#include "gestion_tetromino.h"
+#include "gestion_map.h"
+#include "gestion_de_crise.h"
+#include <fcntl.h>
+#include <stdio.h>
 
 #endif
