@@ -6,14 +6,15 @@
 #    By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 22:11:12 by tgouedar          #+#    #+#              #
-#    Updated: 2018/11/29 17:03:26 by tgouedar         ###   ########.fr        #
+#    Updated: 2018/12/01 19:29:26 by tgouedar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 
-SRCFILE	= 
+SRCFILE	= gestion_tretromino.c\
+		  gestion_map.c\
 
 SRCDIR	= ./
 SRC		= $(addprefix $(SRCDIR),$(SRCFILE))
