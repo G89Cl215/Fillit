@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_map.h                                      :+:      :+:    :+:   */
+/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:54:11 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/01 21:21:34 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/12/01 22:50:22 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GESTION_MAP_H
-# define GESTION_MAP_H
+#include "gestion_de_crise.h"
 
-#include "libft/libft.h"
+void	ft_print_errors(int n)
+{
+	if (n == 1)
+		ft_putstr("Length is invalid\n");
+	if (n == 2)
+		ft_putstr("The map is invalid\n");
+}
 
-//unsigned long long	ft_column_mask(int size_map);
-unsigned short		ft_line_mask(int size_map);
-unsigned short		*ft_gen_map(int size_map);
-
-#endif
+int		ft_free_var(unsigned short **tab, char **tetro)
+{
+	ft_memdel((void**)tab);
+	ft_memdel((void**)tetro);
+	return (0);
+}

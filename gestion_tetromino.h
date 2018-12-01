@@ -6,7 +6,7 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:03:49 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/01 19:28:37 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/01 19:52:46 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 		|| *tetro == 305 || *tetro == 306 || *tetro == 547 || *tetro == 561\
 		|| *tetro == 562 || *tetro == 785 || *tetro == 802 || *tetro == 4369)
 
-int		ft_conv_tetro(char *tetro, unsigned short *tab, int *size);
+int		ft_conv_tetro(char *tetro, unsigned short **tab, int *size);
 int		ft_verif_tetro_ok(unsigned short *tetro);
 
 #endif
