@@ -6,7 +6,7 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 23:13:55 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/02 11:09:00 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/02 17:47:53 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ unsigned short	ft_line_mask(int size_map);
 unsigned short	*ft_gen_map(int size_map);
 int				ft_conv_tetro(char *tetro, unsigned short **tab, int *size);
 int				ft_verif_tetro_ok(unsigned short *tetro);
-
+unsigned long	ft_tetro_long(unsigned short tetro);
+int				t_resolve(unsigned short **map, unsigned short **tab);
 
 #endif
