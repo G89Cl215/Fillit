@@ -6,7 +6,7 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 14:51:18 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/02 18:47:44 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/02 18:54:33 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_resolve_map(unsigned short **map, unsigned short **tab, int map_size)
 			tetro <<= 1;
 		if (!(tetro & (long)((*map)[i])))
 		{
-			(long)((*map)[i]) |= tetro;
+			*((long*)&((*map)[i])) |= tetro;
 			//stock coord >>GOES HERE<<
 			if (ft_resolve_map(map, &(tab[1]), map_size))
 				return (1);

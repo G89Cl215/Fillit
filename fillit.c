@@ -6,7 +6,7 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:22:41 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/02 18:49:38 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/02 19:00:01 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_get_next_tetro(int fd, unsigned short **tab)
 	return (size);
 }
 
-unsigned short	ft_tab_tetro(int fd)
+unsigned short	*ft_tab_tetro(int fd)
 {
 	unsigned short	*tab;
 	unsigned short	*temp;
@@ -50,7 +50,7 @@ unsigned short	ft_tab_tetro(int fd)
 
 	if (!(temp = (unsigned short*)ft_memalloc(sizeof(*tab) * 26)))
 		return (NULL);
-	while (size = ft_get_next_tetro(fd, &temp)) ;
+	while ((size = ft_get_next_tetro(fd, &temp))) ;
 	if (!(tab = (unsigned short*)ft_memalloc(sizeof(*tab) * (size + 1))))
 		return (NULL);
 	tab[size] = 0;
@@ -65,6 +65,8 @@ int				main(int ac, char **av)
 {
 	unsigned short	*tab;
 	unsigned short	*map;
+	int				fd;
+	int				i;
 
 	if (ac > 1)
 	{
@@ -73,6 +75,11 @@ int				main(int ac, char **av)
 		close(fd);
 		map = ft_resolve(&tab);
 	}
-
+	i = -1;
+	while (++i < 16)
+	{
+		ft_putnbr_base(map[i], "01");
+		ft_putchar('\n');
+	}
 	return (0);
 }
