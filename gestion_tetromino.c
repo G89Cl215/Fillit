@@ -6,7 +6,7 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:04:00 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/02 11:10:32 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/02 13:00:32 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			ft_conv_tetro(char *tetro, unsigned short **tab, int *size)
 	}
 	if (ft_verif_tetro_ok(&tetro_bits))
 	{
-		*tab[(*size)++] = tetro_bits;
+		(*tab)[(*size)++] = tetro_bits;
 		return (1);
 	}
 	return (0);
