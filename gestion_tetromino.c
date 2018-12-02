@@ -6,11 +6,11 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:04:00 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/01 22:02:59 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/02 11:10:32 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gestion_tetromino.h"
+#include "fillit.h"
 
 int			ft_conv_tetro(char *tetro, unsigned short **tab, int *size)
 {

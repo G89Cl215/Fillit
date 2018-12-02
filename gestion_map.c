@@ -6,11 +6,11 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:10:04 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/01 21:56:15 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/02 11:10:16 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gestion_map.h"
+#include "fillit.h"
 
 unsigned short	ft_line_mask(int size_map)
 {
