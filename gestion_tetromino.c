@@ -6,13 +6,11 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:04:00 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/02 17:46:35 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/02 18:00:47 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-#include <stdio.h>
 
 int				ft_conv_tetro(char *tetro, unsigned short **tab, int *size)
 {

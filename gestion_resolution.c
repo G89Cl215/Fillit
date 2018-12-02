@@ -6,37 +6,49 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 14:51:18 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/02 17:46:26 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/02 18:30:44 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_resolve(unsigned short **map, unsigned short **tab)
-{
-//	t_list *mapper;
-	unsigned long *new_tab;
-//	unsigned int *coor_tab;
-	int count;
-	int map_size;
+#include "fillit.h"
 
+unsigned short	*ft_resolve(unsigned short **tab)
+{
+	int				map_size;
+	unsigned short	*map;
+	
 	map_size = 2;
+	map = ft_gen_map(map_size);
+	while (!(ft_resolve_map(&map, tab, map_size)))
+		map = ft_gen_map(++map_size);
+	return (map);
+}
+
+int		ft_resolve_map(unsigned short **map, unsigned short **tab, int map_size)
+{
+	unsigned long	tetro;
+//	unsigned int *coor_tab;
+	int				count;
+	int				i;
+
 	i = 0;
-	new_tab = ft_tetro_long(**tab);
+	tetro = ft_tetro_long(**tab);
 	if (**tab == 0)
-		return (TRUE);
+		return (1);
 	while (i < map_size)
 	{
 		count = -1;
-		while ((new_tab & (long)map[i]) && ++count < map_size)
-			new_tab >> 1;
-		if (!(new_tab & map))
+		while ((tetro & (long)((*map)[i])) && ++count < map_size)
+			tetro <<= 1;
+		if (!(tetro & (long)((*map)[i])))
 		{
-			map |= new_tab;
-			//stock coord
-			if (ft_resolve(map, tab + 1, i) == TRUE)
-				return (TRUE);
+			(long)((*map)[i]) |= tetro;
+			//stock coord >>GOES HERE<<
+			if (ft_resolve_map(map, &(tab[1]), map_size))
+				return (1);
 		}
 		i++;
-		new_tab << count;
+		tetro >>= count;
 	}
-	return (ft_resolve(map + 1, tab, size, i);
+	return (0);
 }	
