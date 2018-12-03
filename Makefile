@@ -6,7 +6,7 @@
 #    By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 22:11:12 by tgouedar          #+#    #+#              #
-#    Updated: 2018/12/03 21:12:35 by tgouedar         ###   ########.fr        #
+#    Updated: 2018/12/03 23:11:58 by tgouedar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,12 @@ $(LIB) :
 	make -C libft/
 
 clean :
-	/bin/rm -f $(OBJ)
-	/bin/rmdir $(OBJDIR)
+	make -C libft fclean
+	/bin/rm -f $(OBJ) 2>/dev/null  || true
+	/bin/rmdir $(OBJDIR) 2>/dev/null || true
 
 fclean : clean
+	make -C libft fclean
 	/bin/rm -f $(NAME)
 
 re_lib :
