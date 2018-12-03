@@ -6,7 +6,7 @@
 #    By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 22:11:12 by tgouedar          #+#    #+#              #
-#    Updated: 2018/12/02 17:51:49 by tgouedar         ###   ########.fr        #
+#    Updated: 2018/12/03 21:12:35 by tgouedar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCFILE	= gestion_tetromino.c\
 		  gestion_map.c\
 		  gestion_de_crise.c\
 		  gestion_resolution.c\
+		  gestion_affichage.c\
 		  fillit.c\
 
 SRCDIR	= .
@@ -52,4 +53,4 @@ fclean : clean
 re_lib :
 	make re -C libft/
 
-re : fclean re_lib all
+re : fclean all
