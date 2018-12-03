@@ -6,7 +6,7 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:22:41 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/03 22:31:03 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 22:55:09 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ t_us	*ft_tab_tetro(int fd)
 	t_us	*tab;
 	t_us	*temp;
 	int		size;
+	int		i;
 
 	size = 0;
 	if (!(temp = (t_us*)ft_memalloc(sizeof(*tab) * 26)))
 		return (NULL);
-	while (ft_get_next_tetro(fd, &temp))
+	while ((i = ft_get_next_tetro(fd, &temp)) && i != -1)
 		size++;
-	if (!(tab = (t_us*)ft_memalloc(sizeof(*tab) * (size + 1))))
+	if (i == -1 || !(tab = (t_us*)ft_memalloc(sizeof(*tab) * (size + 1))))
 		return (NULL);
 	tab[size] = 0;
 	while (size--)
@@ -72,9 +73,12 @@ int		main(int ac, char **av)
 		fd = open(av[1], O_RDONLY);
 		tab = ft_tab_tetro(fd);
 		close(fd);
-		coord = ft_resolve(&tab);
-		ft_affichage(coord, tab);
-		ft_memdel((void**)&coord);
+		if (tab)
+		{
+			coord = ft_resolve(&tab);
+			ft_affichage(coord, tab);
+			ft_memdel((void**)&coord);
+		}
 	}
 	return (0);
 }
