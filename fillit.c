@@ -6,13 +6,13 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:22:41 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/03 11:36:21 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 21:00:13 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_get_next_tetro(int fd, unsigned short **tab)
+int		ft_get_next_tetro(int fd, t_us**tab)
 {
 	char			*tetro;
 	char			*line;
@@ -42,52 +42,47 @@ int		ft_get_next_tetro(int fd, unsigned short **tab)
 	return (1);
 }
 
-unsigned short	*ft_tab_tetro(int fd)
+t_us	*ft_tab_tetro(int fd)
 {
-	unsigned short	*tab;
-	unsigned short	*temp;
-	int				size;
+	t_us	*tab;
+	t_us	*temp;
+	int		size;
 
 	size = 0;
-	if (!(temp = (unsigned short*)ft_memalloc(sizeof(*tab) * 26)))
+	if (!(temp = (t_us*)ft_memalloc(sizeof(*tab) * 26)))
 		return (NULL);
 	while (ft_get_next_tetro(fd, &temp)) 
 		size++;
-	if (!(tab = (unsigned short*)ft_memalloc(sizeof(*tab) * (size + 1))))
+	if (!(tab = (t_us*)ft_memalloc(sizeof(*tab) * (size + 1))))
 		return (NULL);
 	tab[size] = 0;
 	while (size--)
-	{
 		tab[size] = temp[size];
-		ft_putnbr(size);
-		ft_putchar('\t');
-		ft_putnbr(tab[size]);
-		ft_putchar('\n');
-	}
-		free(temp);
+	free(temp);
 	return (tab);
 }
 
 
 int				main(int ac, char **av)
 {
-	unsigned short	*tab;
-	unsigned short	*map;
-	int				fd;
-	int				i;
+	t_us	*tab;
+	int		fd;
+	char	*coord;
 
 	if (ac > 1)
 	{
 		fd = open(av[1], O_RDONLY);
 		tab = ft_tab_tetro(fd);
 		close(fd);
-		map = ft_resolve(&tab);
+		coord = ft_resolve(&tab);
+		ft_affichage(coord, tab);
+		ft_memdel((void**)&coord);
 	}
-	i = -1;
+/*	i = -1;
 	while (++i < 16)
 	{
 		ft_putnbr_base(map[i], "01");
 		ft_putchar('\n');
-	}
+	}*/
 	return (0);
 }

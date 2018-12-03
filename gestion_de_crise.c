@@ -6,7 +6,7 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/03 15:42:33 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 19:39:22 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Tetris). Ils sont decrits, grace au symbole '#' dans des blocs de \
 4 lignes de 4 caracteres, separes d'une seule ligne vide");
 }
 
-int		ft_free_var(ushort **tab, char **tetro, char **line)
+int		ft_free_var(t_us **tab, char **tetro, char **line)
 {
 	ft_memdel((void**)tab);
 	ft_memdel((void**)tetro);

@@ -6,7 +6,7 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 23:13:55 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/03 15:40:47 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 20:12:14 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "libft/libft.h"
+# define VERIF(a) (V_1(a) || V_2(a) || V_3(a) || V_4(a))
+# define V_1(a) (*a == 15 || *a == 23 || *a == 39 || *a == 51 || *a == 54)
+# define V_2(a) (*a == 71 || *a == 94 || *a == 99 || *a == 113 || *a == 116)
+# define V_3(a) (*a == 275 || *a == 305 || *a == 306 || *a == 547 || *a == 561)
+# define V_4(a) (*a == 562 || *a == 785 || *a == 802 || *a == 4369)
 
-# define VERIF(tetro) (*tetro == 15 || *tetro == 23 || *tetro == 39\
-		|| *tetro == 51 || *tetro == 54 || *tetro == 71 || *tetro == 94\
-		|| *tetro == 99 || *tetro == 113 || *tetro == 116 || *tetro == 275\
-		|| *tetro == 305 || *tetro == 306 || *tetro == 547 || *tetro == 561\
-		|| *tetro == 562 || *tetro == 785 || *tetro == 802 || *tetro == 4369)
-
-typedef unsigned short	ushort;
-typedef unsigned long	ulong;
+typedef unsigned short	t_us;
+typedef unsigned long	t_ul;
 
 void	ft_print_errors(int n);
-int		ft_free_var(ushort **tab, char **tetro, char **line);
+int		ft_free_var(t_us **tab, char **tetro, char **line);
 int		ft_check_errors(char **line);
 int		ft_map_size_min(int size);
-ulong	ft_line_mask(int size_map);
-ushort	*ft_gen_map(int size_map);
-int		ft_conv_tetro(char *tetro, ushort **tab, int *size);
-int		ft_verif_tetro_ok(ushort *tetro);
-ulong	ft_tetro_long(ushort tetro);
-int		ft_resolve_map(ushort **map, ushort *tab, int size_map);
-ushort	*ft_resolve(ushort **tab);
+t_ul	ft_line_mask(int size_map);
+t_us	*ft_gen_map(int size_map);
+int		ft_conv_tetro(char *tetro, t_us **tab, int *size);
+int		ft_verif_tetro_ok(t_us *tetro);
+t_ul	ft_tetro_long(t_us tetro);
+int		ft_resolve_map(t_us **map, t_us *tab, int size_map, char **coord);
+char	*ft_resolve(t_us **tab);
+void	ft_affichage(char *tab_coord, t_us *tab);
 
 #endif

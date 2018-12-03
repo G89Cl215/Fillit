@@ -6,15 +6,15 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:04:00 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/03 15:44:29 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 19:59:33 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_conv_tetro(char *tetro, ushort **tab, int *size)
+int		ft_conv_tetro(char *tetro, t_us **tab, int *size)
 {
-	ushort	tetro_bits;
+	t_us	tetro_bits;
 	int		i;
 
 	tetro_bits = 0;
@@ -33,7 +33,7 @@ int		ft_conv_tetro(char *tetro, ushort **tab, int *size)
 	return (0);
 }
 
-int		ft_verif_tetro_ok(ushort *tetro)
+int		ft_verif_tetro_ok(t_us *tetro)
 {
 	while (!(*tetro & 15))
 		*tetro >>= 4;
@@ -44,11 +44,11 @@ int		ft_verif_tetro_ok(ushort *tetro)
 	return (0);
 }
 
-ulong	ft_tetro_long(ushort tetro)
+t_ul	ft_tetro_long(t_us tetro)
 {
 	int		i;
-	ulong	tetro_long;
-	ulong	mask;
+	t_ul	tetro_long;
+	t_ul	mask;
 
 	i = -1;
 	tetro_long = tetro;
