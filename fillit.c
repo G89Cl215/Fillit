@@ -6,13 +6,13 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:22:41 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/03 21:00:13 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 22:31:03 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_get_next_tetro(int fd, t_us**tab)
+int		ft_get_next_tetro(int fd, t_us **tab)
 {
 	char			*tetro;
 	char			*line;
@@ -35,7 +35,6 @@ int		ft_get_next_tetro(int fd, t_us**tab)
 		ft_print_errors(2);
 		return (ft_free_var(tab, &tetro, &line));
 	}
-
 	if (!(ft_conv_tetro(tetro, tab, &size)))
 		return (ft_free_var(tab, &tetro, &line));
 	ft_free_var(NULL, &tetro, &line);
@@ -51,7 +50,7 @@ t_us	*ft_tab_tetro(int fd)
 	size = 0;
 	if (!(temp = (t_us*)ft_memalloc(sizeof(*tab) * 26)))
 		return (NULL);
-	while (ft_get_next_tetro(fd, &temp)) 
+	while (ft_get_next_tetro(fd, &temp))
 		size++;
 	if (!(tab = (t_us*)ft_memalloc(sizeof(*tab) * (size + 1))))
 		return (NULL);
@@ -62,8 +61,7 @@ t_us	*ft_tab_tetro(int fd)
 	return (tab);
 }
 
-
-int				main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_us	*tab;
 	int		fd;
@@ -78,11 +76,5 @@ int				main(int ac, char **av)
 		ft_affichage(coord, tab);
 		ft_memdel((void**)&coord);
 	}
-/*	i = -1;
-	while (++i < 16)
-	{
-		ft_putnbr_base(map[i], "01");
-		ft_putchar('\n');
-	}*/
 	return (0);
 }

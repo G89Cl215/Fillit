@@ -6,7 +6,7 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 17:40:38 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/03 20:59:38 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 22:27:57 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	ft_place_tetro(t_us tetro, char i, char j, char *str)
 		t_ligne = 0;
 		while (*str && *str != '\n' && t_ligne++ < 4)
 		{
-			if (1 & tetro) 
+			if (1 & tetro)
 				*(str) = 'A' + lettre;
-		    str++ ;
+			str++;
 			tetro >>= 1;
 		}
 		while (t_ligne++ < 4)
@@ -58,7 +58,7 @@ void	ft_affichage(char *tab_coord, t_us *tab)
 	int		j;
 	int		map_size;
 	char	*str;
-	
+
 	i = 0;
 	j = 0;
 	while (tab_coord[i] != 127)
@@ -66,8 +66,8 @@ void	ft_affichage(char *tab_coord, t_us *tab)
 	map_size = tab_coord[--i];
 	i -= 2;
 	str = ft_strnew(map_size * (map_size + 1) - 1);
-	ft_memset(str, '.', map_size *(map_size + 1) - 1);
-	str[map_size *(map_size + 1) - 1] = 0;
+	ft_memset(str, '.', map_size * (map_size + 1) - 1);
+	str[map_size * (map_size + 1) - 1] = 0;
 	ft_place_lines(str, map_size + 1);
 	while (i >= 0)
 	{

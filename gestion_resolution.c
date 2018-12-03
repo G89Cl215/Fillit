@@ -6,7 +6,7 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 14:51:18 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/03 20:58:08 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 22:25:45 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ char	*ft_resolve(t_us **tab)
 	}
 	ft_memdel((void**)&map);
 	tab_coord[2 * i] = (char)map_size;
-/*	i = -1;
-	while (tab_coord[++i] != 127)
-	{
-		ft_putnbr(tab_coord[i]);
-		ft_putchar('\n');
-	}*/
 	return (tab_coord);
 }
 
