@@ -6,7 +6,7 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:22:41 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/02 19:00:01 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 11:36:21 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		ft_get_next_tetro(int fd, unsigned short **tab)
 	if (!(ft_conv_tetro(tetro, tab, &size)))
 		return (ft_free_var(tab, &tetro, &line));
 	ft_free_var(NULL, &tetro, &line);
-	return (size);
+	return (1);
 }
 
 unsigned short	*ft_tab_tetro(int fd)
@@ -48,15 +48,23 @@ unsigned short	*ft_tab_tetro(int fd)
 	unsigned short	*temp;
 	int				size;
 
+	size = 0;
 	if (!(temp = (unsigned short*)ft_memalloc(sizeof(*tab) * 26)))
 		return (NULL);
-	while ((size = ft_get_next_tetro(fd, &temp))) ;
+	while (ft_get_next_tetro(fd, &temp)) 
+		size++;
 	if (!(tab = (unsigned short*)ft_memalloc(sizeof(*tab) * (size + 1))))
 		return (NULL);
 	tab[size] = 0;
 	while (size--)
+	{
 		tab[size] = temp[size];
-	free(temp);
+		ft_putnbr(size);
+		ft_putchar('\t');
+		ft_putnbr(tab[size]);
+		ft_putchar('\n');
+	}
+		free(temp);
 	return (tab);
 }
 

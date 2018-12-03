@@ -6,16 +6,16 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:04:00 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/02 18:00:47 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/03 15:44:29 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int				ft_conv_tetro(char *tetro, unsigned short **tab, int *size)
+int		ft_conv_tetro(char *tetro, ushort **tab, int *size)
 {
-	unsigned short	tetro_bits;
-	int				i;	
+	ushort	tetro_bits;
+	int		i;
 
 	tetro_bits = 0;
 	i = 1;
@@ -33,28 +33,28 @@ int				ft_conv_tetro(char *tetro, unsigned short **tab, int *size)
 	return (0);
 }
 
-int				ft_verif_tetro_ok(unsigned short *tetro)
+int		ft_verif_tetro_ok(ushort *tetro)
 {
 	while (!(*tetro & 15))
 		*tetro >>= 4;
 	while (!(*tetro & 4369))
 		*tetro >>= 1;
-	if ( VERIF(tetro) )
+	if (VERIF(tetro))
 		return (1);
 	return (0);
 }
 
-unsigned long	ft_tetro_long(unsigned short tetro)
+ulong	ft_tetro_long(ushort tetro)
 {
-	int				i;
-	unsigned long	tetro_long;
-	unsigned long	mask;
+	int		i;
+	ulong	tetro_long;
+	ulong	mask;
 
 	i = -1;
-	tetro_long = (unsigned long)tetro;
+	tetro_long = tetro;
 	while (++i < 4)
 	{
-		mask = ft_pow(2, 4 + 16 * i) - 1;
+		mask = ft_line_mask(4 + 16 * i);
 		mask &= tetro_long;
 		tetro_long ^= mask;
 		tetro_long <<= 12;
