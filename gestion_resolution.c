@@ -6,7 +6,7 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 14:51:18 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/03 22:25:45 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/05 16:33:45 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,22 @@ int		ft_resolve_map(t_us **map, t_us *tab, int map_size, char **coord)
 
 	if ((i = -1) && *tab == 0)
 		return (1);
-	tetro = ft_tetro_long(*tab);
-	while (++i < map_size && (count = -1))
-	{
-		while (++count < map_size && (tetro & *((t_ul*)&((*map)[i]))))
-			tetro <<= 1;
-		if (!(tetro & (*((t_ul*)&((*map)[i])))))
+	while (++i < map_size && (count = -1)
+			&& (tetro = ft_tetro_long(*tab)))
+		while (++count < map_size)
 		{
-			*((t_ul*)&((*map)[i])) |= tetro;
-			if (ft_resolve_map(map, &(tab[1]), map_size, coord))
+			if (!(tetro & (*((t_ul*)&((*map)[i])))))
 			{
-				(*coord)[2 * tetro_count] = count;
-				(*coord)[2 * tetro_count++ + 1] = i;
-				return (1);
+				*((t_ul*)&((*map)[i])) ^= tetro;
+				if (ft_resolve_map(map, &(tab[1]), map_size, coord))
+				{
+					(*coord)[2 * tetro_count] = count;
+					(*coord)[2 * tetro_count++ + 1] = i;
+					return (1);
+				}
+				*((t_ul*)&((*map)[i])) ^= tetro;
 			}
+			tetro <<= 1;
 		}
-		tetro >>= count;
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:10:04 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/03 19:40:37 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/05 16:53:59 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_map_size_min(int size)
 	int		res;
 
 	size *= 4;
-	res = 2;
+	res = 0;
 	while (res * res < size)
 		res++;
 	return (res);

@@ -6,13 +6,13 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:22:41 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/03 22:55:09 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/05 17:31:13 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_get_next_tetro(int fd, t_us **tab)
+int		ft_get_next_tetro(int fd, t_us **tab, int flag)
 {
 	char			*tetro;
 	char			*line;
@@ -21,19 +21,18 @@ int		ft_get_next_tetro(int fd, t_us **tab)
 
 	i = -1;
 	tetro = ft_memalloc(1);
+	if (flag == 1)
+	{
+		if (!(get_next_line(fd, &line)))
+			return (ft_free_var(NULL, &tetro, &line));
+		if (*line)
+			return (ft_free_var(tab, &tetro, &line));
+	}
 	while (++i < 4)
 	{
-		if (!get_next_line(fd, &line) && !i)
-			return (ft_free_var(NULL, &tetro, &line));
-		if (!(ft_check_errors(&line)))
+		if (!get_next_line(fd, &line) || !(ft_check_errors(&line)))
 			return (ft_free_var(tab, &tetro, &line));
 		ft_strappend(&tetro, &line);
-	}
-	get_next_line(fd, &line);
-	if (*line)
-	{
-		ft_print_errors(2);
-		return (ft_free_var(tab, &tetro, &line));
 	}
 	if (!(ft_conv_tetro(tetro, tab, &size)))
 		return (ft_free_var(tab, &tetro, &line));
@@ -48,10 +47,12 @@ t_us	*ft_tab_tetro(int fd)
 	int		size;
 	int		i;
 
-	size = 0;
+	size = 1;
 	if (!(temp = (t_us*)ft_memalloc(sizeof(*tab) * 26)))
 		return (NULL);
-	while ((i = ft_get_next_tetro(fd, &temp)) && i != -1)
+	if (ft_get_next_tetro(fd, &temp, 0) != 1)
+		return (NULL);
+	while ((i = ft_get_next_tetro(fd, &temp, 1)) && i != -1)
 		size++;
 	if (i == -1 || !(tab = (t_us*)ft_memalloc(sizeof(*tab) * (size + 1))))
 		return (NULL);
@@ -71,6 +72,12 @@ int		main(int ac, char **av)
 	if (ac > 1)
 	{
 		fd = open(av[1], O_RDONLY);
+		if (fd < 0)
+		{
+			close(fd);
+			ft_print_errors(0);
+			return (0);
+		}
 		tab = ft_tab_tetro(fd);
 		close(fd);
 		if (tab)
