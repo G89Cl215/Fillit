@@ -1,44 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_map.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 18:10:04 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 12:07:48 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/06 18:56:39 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/15 18:28:19 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-t_ul	ft_line_mask(int size_map)
+char	*ft_strdup(const char *str)
 {
-	return (((t_ul)1 << size_map) - 1);
-}
-
-int		ft_map_size_min(int size)
-{
-	int		res;
-
-	size *= 4;
-	res = 0;
-	while (res * res < size)
-		res++;
-	return (res);
-}
-
-t_us	*ft_gen_map(int size_map)
-{
-	t_us	*map;
 	int		i;
+	char	*dup;
 
-	i = -1;
-	if (!(map = (t_us*)malloc(sizeof(*map) * 16)))
+	i = ft_strlen(str);
+	if (!(dup = (char *)malloc(sizeof(*dup) * (i + 1))))
 		return (NULL);
-	while (++i < size_map)
-		map[i] = ~((t_us)ft_line_mask(size_map));
-	while (i < 16)
-		map[i++] = ~0;
-	return (map);
+	dup[i] = '\0';
+	while (i-- > 0)
+		dup[i] = str[i];
+	return (dup);
 }

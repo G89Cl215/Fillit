@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/07 15:48:51 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/08 19:25:27 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+int		ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
-	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
-	}
-	return (0);
-}
+	unsigned int	i;
 
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
+	i = 0;
+	if (n == 0)
 		return (0);
-	return (1);
+	while (s1[i] && s2[i] == s1[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

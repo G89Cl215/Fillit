@@ -6,7 +6,7 @@
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/03 17:40:38 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/03 22:27:57 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/09 11:44:11 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	ft_affichage(char *tab_coord, t_us *tab)
 		i++;
 	map_size = tab_coord[--i];
 	i -= 2;
-	str = ft_strnew(map_size * (map_size + 1) - 1);
-	ft_memset(str, '.', map_size * (map_size + 1) - 1);
-	str[map_size * (map_size + 1) - 1] = 0;
+	str = ft_strnew(map_size * (map_size + 1));
+	ft_memset(str, '.', map_size * (map_size + 1));
+	str[map_size * (map_size + 1)] = 0;
 	ft_place_lines(str, map_size + 1);
 	while (i >= 0)
 	{

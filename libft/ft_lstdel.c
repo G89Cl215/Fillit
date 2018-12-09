@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/14 15:38:32 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/17 13:25:22 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	t_list	*next;
+
+	while (alst && *alst)
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		next = (*alst)->next;
+		ft_lstdelone(alst, del);
+		(*alst) = next;
 	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
 }

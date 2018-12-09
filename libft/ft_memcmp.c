@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/07 21:35:55 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/07 21:52:05 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	size_t	i;
+	int		cmp;
+
+	i = 0;
+	while (i < n)
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		if ((cmp = *((unsigned char*)s1 + i) - *((unsigned char*)s2 + i)))
+			return (cmp);
+		i++;
 	}
 	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
 }

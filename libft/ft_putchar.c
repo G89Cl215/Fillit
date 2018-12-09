@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/14 15:43:43 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/15 22:23:31 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+void	ft_putchar(char c)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
-	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
-	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
+	write(1, &c, 1);
 }

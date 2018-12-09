@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/07 15:26:36 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/16 13:38:49 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	size_t	i;
+
+	if (ft_strlen(needle) == 0)
+		return ((char*)haystack);
+	while (*haystack)
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		if (*haystack == *needle)
+		{
+			i = 1;
+			while (needle[i] && haystack[i] == needle[i])
+				i++;
+			if (!(needle[i]))
+				return ((char*)haystack);
+		}
+		haystack++;
 	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
+	return (NULL);
 }

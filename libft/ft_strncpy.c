@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/07 13:38:02 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/16 13:41:02 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	size_t	i;
+
+	i = 0;
+	while (i < n && src[i])
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		dest[i] = src[i];
+		i++;
 	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
 }

@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/12 19:28:11 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/17 16:13:50 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	char	*res;
+	size_t	i;
+
+	i = 0;
+	if (!(s) || ft_strlen(s) < start)
+		return (NULL);
+	if (!(res = ft_strnew(len)))
+		return (NULL);
+	while (i < len && s[start + i])
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		res[i] = s[start + i];
+		i++;
 	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
+	while (i < len)
+		res[i++] = '\0';
+	return (res);
 }

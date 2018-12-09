@@ -6,7 +6,7 @@
 #    By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/05 22:11:12 by tgouedar          #+#    #+#              #
-#    Updated: 2018/12/03 23:11:58 by tgouedar         ###   ########.fr        #
+#    Updated: 2018/12/09 12:00:04 by tgouedar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,11 @@ $(OBJDIR)/%.o : %.c
 	@/bin/mkdir $(OBJDIR) 2>/dev/null || true
 	$(CC) $(CFLAGS) -o $@ -c $< -I $(HDR)
 
-$(LIB) :
-	make -C libft/
+$(LIB) : force
+	@make -C libft/
+
+force :
+	@true
 
 clean :
 	make -C libft fclean

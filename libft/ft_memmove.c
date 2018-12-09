@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/07 20:06:00 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/15 18:25:15 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	size_t	i;
+
+	if (n > 0)
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		i = (dst < src ? 0 : n - 1);
+		while (ft_btw(i, 0, n - 1))
+		{
+			*((char*)dst + i) = *((char*)src + i);
+			i += (dst < src ? 1 : -1);
+		}
 	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
+	return (dst);
 }

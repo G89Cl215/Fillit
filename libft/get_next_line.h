@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/16 16:20:25 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/27 19:29:28 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include "libft.h"
+# define BUFF_SIZE 5
+
+typedef struct	s_list_fd
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
-	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
-	}
-	return (0);
-}
+	struct s_list_fd	*next;
+	char				*rd;
+	int					fd;
+}				t_list_fd;
 
-int		ft_check_errors(char **line)
-{
-	int var;
+int				get_next_line(const int fd, char **line);
 
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
-}
+#endif

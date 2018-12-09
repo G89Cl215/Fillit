@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/07 15:58:07 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/16 12:01:41 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+int		ft_atoi(const char *str)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	unsigned int	res;
+	int				sign;
+
+	while (!(res = 0) && (!(*str < '\t' || *str > '\r') || *str == ' '))
+		str++;
+	sign = (*str == '-' ? -1 : 1);
+	if ((*str == '+' || *str == '-'))
+		str++;
+	while (ft_isdigit(*str))
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		res = res * 10 + (*str - '0');
+		str++;
 	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
+	return (res * sign);
 }

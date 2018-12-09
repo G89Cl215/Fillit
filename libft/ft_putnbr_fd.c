@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/14 15:51:54 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/14 17:04:45 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+void	ft_putnbr_fd(int n, int fd)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	unsigned int i;
+
+	if (fd > 0)
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		if (n < 0)
+			ft_putchar_fd('-', fd);
+		i = (n < 0 ? -n : n);
+		if (i > 9)
+			ft_putnbr_fd(i / 10, fd);
+		ft_putchar_fd(i % 10 + '0', fd);
 	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
 }

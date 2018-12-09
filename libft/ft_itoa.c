@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gestion_de_crise.c                                 :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgouedar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:02:52 by tgouedar          #+#    #+#             */
-/*   Updated: 2018/12/09 11:46:08 by tgouedar         ###   ########.fr       */
+/*   Created: 2018/11/08 16:09:08 by tgouedar          #+#    #+#             */
+/*   Updated: 2018/11/17 13:19:40 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		ft_free_var(t_us **tab, char **tetro, char **line)
+char	*ft_itoa(int nb)
 {
-	ft_memdel((void**)tetro);
-	ft_memdel((void**)line);
-	if (tab)
+	char			*res;
+	unsigned int	j;
+	size_t			i;
+	int				s;
+
+	i = 0;
+	s = (nb < 0 ? -1 : 1);
+	j = s * nb;
+	while (++i && j)
+		j /= 10;
+	((s < 0 || !nb) ? 1 : --i);
+	if (!(res = ft_strnew(i)))
+		return (NULL);
+	while (i > 0)
 	{
-		ft_putendl("error");
-		ft_memdel((void**)tab);
-		return (-1);
+		j = (s * nb) % 10;
+		res[--i] = (ft_isdigit(j + '0') ? j + '0' : -1 * j + '0');
+		nb /= 10;
 	}
-	return (0);
-}
-
-int		ft_check_errors(char **line)
-{
-	int var;
-
-	var = ft_strlen(*line);
-	if (var != 4)
-		return (0);
-	return (1);
+	(s < 0 ? res[0] = '-' : 1);
+	return (res);
 }

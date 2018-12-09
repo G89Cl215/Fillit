@@ -6,11 +6,13 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:22:41 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/05 17:31:13 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/09 12:05:57 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdlib.h>
+#include <fcntl.h>
 
 int		ft_get_next_tetro(int fd, t_us **tab, int flag)
 {
@@ -27,6 +29,7 @@ int		ft_get_next_tetro(int fd, t_us **tab, int flag)
 			return (ft_free_var(NULL, &tetro, &line));
 		if (*line)
 			return (ft_free_var(tab, &tetro, &line));
+		free(line);
 	}
 	while (++i < 4)
 	{
@@ -40,9 +43,9 @@ int		ft_get_next_tetro(int fd, t_us **tab, int flag)
 	return (1);
 }
 
-t_us	*ft_tab_tetro(int fd)
+t_us	**ft_tab_tetro(int fd)
 {
-	t_us	*tab;
+	t_us	**tab;
 	t_us	*temp;
 	int		size;
 	int		i;
@@ -54,38 +57,40 @@ t_us	*ft_tab_tetro(int fd)
 		return (NULL);
 	while ((i = ft_get_next_tetro(fd, &temp, 1)) && i != -1)
 		size++;
-	if (i == -1 || !(tab = (t_us*)ft_memalloc(sizeof(*tab) * (size + 1))))
+	if (i == -1 || !(tab = (t_us**)malloc(sizeof(t_us**)))
+				|| !(*tab = (t_us*)malloc(sizeof(t_us) * (size + 1))))
 		return (NULL);
-	tab[size] = 0;
+	(*tab)[size] = 0;
 	while (size--)
-		tab[size] = temp[size];
+		(*tab)[size] = temp[size];
 	free(temp);
 	return (tab);
 }
 
 int		main(int ac, char **av)
 {
-	t_us	*tab;
+	t_us	**tab;
 	int		fd;
 	char	*coord;
 
-	if (ac > 1)
+	if (ac == 2)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd < 0)
+		if (((fd = open(av[1], O_RDONLY)) < 0))
 		{
-			close(fd);
-			ft_print_errors(0);
+			ft_putendl("error");
 			return (0);
 		}
-		tab = ft_tab_tetro(fd);
-		close(fd);
-		if (tab)
+		if ((tab = ft_tab_tetro(fd)))
 		{
-			coord = ft_resolve(&tab);
-			ft_affichage(coord, tab);
+			coord = ft_resolve(tab);
+			ft_affichage(coord, *tab);
 			ft_memdel((void**)&coord);
+			free(*tab);
+			free(tab);
 		}
+		close(fd);
 	}
+	else
+		ft_putendl("usage : ./fillit source_file");
 	return (0);
 }

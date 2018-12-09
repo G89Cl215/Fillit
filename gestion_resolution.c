@@ -6,7 +6,7 @@
 /*   By: baavril <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 14:51:18 by baavril           #+#    #+#             */
-/*   Updated: 2018/12/05 16:33:45 by tgouedar         ###   ########.fr       */
+/*   Updated: 2018/12/09 11:42:55 by tgouedar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_resolve(t_us **tab)
 		i++;
 	map_size = ft_map_size_min(i);
 	map = ft_gen_map(map_size);
-	if (!(tab_coord = (char*)malloc((2 * i + 1) * sizeof(*tab_coord))))
+	if (!(tab_coord = (char*)malloc((2 * i + 2) * sizeof(*tab_coord))))
 		return (NULL);
 	tab_coord[2 * i + 1] = 127;
 	while (!(ft_resolve_map(&map, *tab, map_size, &tab_coord)))
